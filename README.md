@@ -2,7 +2,9 @@
 a CILogon OIDC demo app for https://scimma.github.io/IAM/Community/
 
 This container inherits from https://github.com/cilogon/debian-openidc
-published to https://hub.docker.com/r/cilogon/debian-openidc.
+that is published to https://hub.docker.com/r/cilogon/debian-openidc.
+
+The index.php script checks the OIDC_CLAIM_isMemberOf claim to see if the authenticated user is an active member of the SCiMMA Community and to show if the user is a member of the Blue Team or Red Team.
 
 ## build the container
 ```
