@@ -7,6 +7,8 @@ if (isset($_SERVER['OIDC_CLAIM_cn'])) {
   $name = $_SERVER['OIDC_CLAIM_cn'];
 } elseif (isset($_SERVER['OIDC_CLAIM_name'])) {
   $name = $_SERVER['OIDC_CLAIM_name'];
+} elseif (isset($_SERVER['OIDC_CLAIM_given_name'])) {
+  $name = $_SERVER['OIDC_CLAIM_given_name'];
 } else {
   $name = "anonymous";
 }
@@ -21,7 +23,7 @@ if (isset($_SERVER['OIDC_CLAIM_isMemberOf'])) {
     $isBlueTeamMember = TRUE;
   }
   if (array_search("Red Team", $groups, $strict) !== false) {
-    $isBlueTeamMember = TRUE;
+    $isRedTeamMember = TRUE;
   }
 }
 if ($isMember) {
@@ -36,6 +38,10 @@ if ($isBlueTeamMember) {
 if ($isRedTeamMember) {
   echo "<p>You are a member of the Red Team!</p>\n";
   echo "<p><img src=\"https://scimma.github.io/IAM/Community/redteam.png\" /></p>\n";
+}
+if (isset($_SERVER['OIDC_CLAIM_voPersonID'])) {
+  $voPersonID = $_SERVER['OIDC_CLAIM_voPersonID'];
+  echo "<p>Your user ID is $voPersonID.</p>\n";
 }
 echo "<p>You can <a href=\"./redirect?logout=/oidc\">logout</a> to try this demo again.</p>\n";
 echo "<p>Visit <a href=\"https://github.com/cilogon/scimma-demo\">https://github.com/cilogon/scimma-demo</a> for more information about this demo.</p>\n";
